@@ -26,25 +26,7 @@ router.post('/create-payment-intent', async (req, res) => {
       },
     });
 
-    console.log("Price object created:", price);
-
-    // Create a payment link using the price id
-    const paymentLink = await stripe.paymentLinks.create({
-      line_items: [
-        {
-          price: price.id, // Use the dynamically created price id
-          quantity: 1,
-        },
-      ],
-    });
-
-    res.status(200).send({
-      paymentLink: paymentLink.url, // Send the payment link URL
-    });
-  } catch (error) {
-    console.error('Error creating payment link:', error);
-    res.status(500).send({ error: error.message });
-  }
+  
 });
 
 module.exports = router;
